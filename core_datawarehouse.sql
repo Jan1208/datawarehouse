@@ -79,7 +79,7 @@ CREATE TABLE Vertriebspartner (
 	partnerartenID INT,
 	pvertragID INT,
 	kreditID INT,
-	telefonnummer INT,
+	telefonnummer VARCHAR(50),
 	gueltig_ab TIMESTAMP,
 	gueltig_bis TIMESTAMP
 );
