@@ -85,7 +85,6 @@ CREATE TABLE Kredit (
 	Zinsen float,
 	Kreditvolumen float,
 	Abschlusskosten float,
-	Geforderte_garantie float,
 	Personalkosten float,
 	Anfangstermin DATE,
 	Endtermin DATE,
