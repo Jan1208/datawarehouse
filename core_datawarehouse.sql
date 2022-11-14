@@ -65,23 +65,23 @@ CREATE TABLE Adresse (
 );
 
 CREATE TABLE Partnerarten (
-partnerartenID SERIAL PRIMARY KEY,
-partnerart VARCHAR(50),
-vpartnerID INT,
-gueltig_ab TIMESTAMP,
-gueltig_bis TIMESTAMP
+	partnerartenID SERIAL PRIMARY KEY,
+	partnerart VARCHAR(50),
+	vpartnerID INT,
+	gueltig_ab TIMESTAMP,
+	gueltig_bis TIMESTAMP
 );
 
 
 CREATE TABLE Vertriebspartner (
-vpartnerID SERIAL PRIMARY KEY,
-firmenname VARCHAR(50),
-partnerartenID INT,
-pvertragID INT,
-kreditID INT,
-telefonnummer INT,
-gueltig_ab TIMESTAMP,
-gueltig_bis TIMESTAMP
+	vpartnerID SERIAL PRIMARY KEY,
+	firmenname VARCHAR(50),
+	partnerartenID INT,
+	pvertragID INT,
+	kreditID INT,
+	telefonnummer INT,
+	gueltig_ab TIMESTAMP,
+	gueltig_bis TIMESTAMP
 );
 
 CREATE TABLE Kreditverantwortlicher (
