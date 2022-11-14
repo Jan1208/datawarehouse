@@ -82,12 +82,13 @@ CREATE TABLE Vertriebspartner (
 );
 
 CREATE TABLE Kreditverantwortlicher (
+	KreditverantwortlicherID SERIAL PRIMARY KEY,
 	KreditID INT NOT NULL REFERENCES Kredit(KreditID),
 	MitarbeiterID INT NOT NULL REFERENCES Mitarbeiter(MitarbeiterID),
-	VertriebspartnerID INT NOT NULL REFERENCES Vertriebspartner(VPartnerID)
+	VertriebspartnerID INT NOT NULL REFERENCES Vertriebspartner(VertriebspartnerID)
 );
 
-CREATE TABLE Person (
+CREATE TABLE Rückzahlung (
 	RueckzahlungsID SERIAL PRIMARY KEY,
 	KreditID INTEGER NOT NULL REFERENCES Kredit(KreditID),
 	Tilgungsanteil FLOAT NOT NULL,
@@ -97,19 +98,22 @@ CREATE TABLE Person (
 	gueltig_bis TIMESTAMP NOT NULL
 );
 
-CREATE TABLE buergt (
-	KundenID INT NOT NULL PRIMARY KEY REFERENCES Kunde(KundenID),
-	BuergenID INT NOT NULL PRIMARY KEY REFERENCES Buergen(BuergenID)
+CREATE TABLE Buergschaft (
+	BuergschaftsID SERIAL NOT NULL PRIMARY KEY,
+	KundenID INT NOT NULL REFERENCES Kunde(KundenID),
+	BuergenID INT NOT NULL REFERENCES Buergen(BuergenID),
+	gueltig_ab TIMESTAMP NOT NULL,
+	gueltig_bis TIMESTAMP NOT NULL
 );
 
 CREATE TABLE Kundentyp (
-	KundentypID INT SERIAL PRIMARY KEY,
+	KundentypID SERIAL PRIMARY KEY,
 	gueltig_ab TIMESTAMP NOT NULL,
 	gueltig_bis TIMESTAMP NOT NULL
 );
 
 CREATE TABLE Buergen (
-	BuergenID INT SERIAL PRIMARY KEY,
+	BuergenID SERIAL PRIMARY KEY,
 	AdressID INT NOT NULL REFERENCES Adresse(AdressID),
 	Vorname VARCHAR NOT NULL,
 	Nachname VARCHAR NOT NULL,
@@ -118,7 +122,7 @@ CREATE TABLE Buergen (
 );
 
 CREATE TABLE Provisionsvertrag (
-	ProvionsvertragID INT  SERIAL PRIMARY KEY,
+	ProvionsvertragID SERIAL PRIMARY KEY,
 	hoehe FLOAT NOT NULL,
 	gueltig_ab TIMESTAMP NOT NULL,
 	gueltig_bis TIMESTAMP NOT NULL
