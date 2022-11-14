@@ -116,7 +116,7 @@ CREATE TABLE Rueckzahlung (
 	RueckzahlungsID SERIAL PRIMARY KEY,
 	KreditID INTEGER NOT NULL REFERENCES Kredit(KreditID),
 	Tilgungsanteil FLOAT NOT NULL,
-	Zisnanteil FLOAT NOT NULL,
+	Zinsanteil FLOAT NOT NULL,
 	Datum DATE NOT NULL,
 	gueltig_ab TIMESTAMP NOT NULL,
 	gueltig_bis TIMESTAMP NOT NULL
