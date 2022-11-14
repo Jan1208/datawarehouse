@@ -1,41 +1,41 @@
 CREATE TABLE Kredit (
-  kreditID SERIAL PRIMARY KEY, 
-  zinsen float,
-  kreditvolumen float,
-  abschlusskosten float,
-  geforderte_garantie float,
-  personalkosten float,
-  anfangstermin DATE,
-  endtermin DATE,
-  kundenID INT,
-  kreditartID INT,
+  KreditID SERIAL PRIMARY KEY, 
+  Zinsen float,
+  Kreditvolumen float,
+  Abschlusskosten float,
+  Geforderte_garantie float,
+  Personalkosten float,
+  Anfangstermin DATE,
+  Endtermin DATE,
+  KundenID INT,
+  KreditartID INT,
   gueltig_ab TIMESTAMP,
   gueltig_bis TIMESTAMP
 );
 
 CREATE TABLE Kreditart (
-  kreditID INT NOT NULL,
-  kreditart VARCHAR(50),
+  KreditID INT NOT NULL,
+  Kreditart VARCHAR(50),
   gueltig_ab TIMESTAMP,
   gueltig_bis TIMESTAMP
 );
 
 CREATE TABLE Kunde (
-  kundenID SERIAL PRIMARY KEY,
-  vorname VARCHAR(50),
-  nachname VARCHAR(50),
-  geburtstag DATE,
-  nettoeinkommen_monat float,
-  adressID INT,
-  berufID INT,
-  kundentypID INT,
+  KundenID SERIAL PRIMARY KEY,
+  Vorname VARCHAR(50),
+  Nachname VARCHAR(50),
+  Geburtstag DATE,
+  Nettoeinkommen_monat float,
+  AdressID INT,
+  BerufID INT,
+  KundentypID INT,
   gueltig_ab TIMESTAMP,
   gueltig_bis TIMESTAMP
 );
 
 CREATE TABLE Beruf (
   BerufID SERIAL PRIMARY KEY,
-  berufname varchar(50),
+  Berufname varchar(50),
   gueltig_ab TIMESTAMP,
   gueltig_bis TIMESTAMP
 );
@@ -64,22 +64,20 @@ CREATE TABLE Adresse (
   gueltig_bis TIMESTAMP
 );
 
-CREATE TABLE Partnerarten (
-	partnerartenID SERIAL PRIMARY KEY,
-	partnerart VARCHAR(50),
-	vpartnerID INT,
+CREATE TABLE Partnerart (
+	PartnerartenID SERIAL PRIMARY KEY,
+	Partnerart VARCHAR(50),
 	gueltig_ab TIMESTAMP,
 	gueltig_bis TIMESTAMP
 );
 
 
 CREATE TABLE Vertriebspartner (
-	vpartnerID SERIAL PRIMARY KEY,
-	firmenname VARCHAR(50),
-	partnerartenID INT,
-	pvertragID INT,
-	kreditID INT,
-	telefonnummer VARCHAR(50),
+	VertriebspartnerID SERIAL PRIMARY KEY,
+	Firmenname VARCHAR(50),
+	PartnerartID INT,
+	ProvisionsvertragID INT,
+	Telefonnummer VARCHAR,
 	gueltig_ab TIMESTAMP,
 	gueltig_bis TIMESTAMP
 );
