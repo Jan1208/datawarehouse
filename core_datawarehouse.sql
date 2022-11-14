@@ -112,7 +112,7 @@ CREATE TABLE Kreditverantwortlicher (
 	VertriebspartnerID INT NOT NULL REFERENCES Vertriebspartner(VertriebspartnerID)
 );
 
-CREATE TABLE Rückzahlung (
+CREATE TABLE Rueckzahlung (
 	RueckzahlungsID SERIAL PRIMARY KEY,
 	KreditID INTEGER NOT NULL REFERENCES Kredit(KreditID),
 	Tilgungsanteil FLOAT NOT NULL,
