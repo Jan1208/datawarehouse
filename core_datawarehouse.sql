@@ -1,21 +1,68 @@
-CREATE TABLE Kredit (
-	KreditID SERIAL PRIMARY KEY, 
-	Zinsen float,
-	Kreditvolumen float,
-	Abschlusskosten float,
-	Geforderte_garantie float,
-	Personalkosten float,
-	Anfangstermin DATE,
-	Endtermin DATE,
-	KundenID INT NOT NULL REFERENCES Kunde(KundenID),
-	KreditartID INT NOT NULL REFERENCES Kreditart(KreditartID),
-	gueltig_ab TIMESTAMP,
-	gueltig_bis TIMESTAMP
-);
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
 
 CREATE TABLE Kreditart (
 	KreditartID SERIAL PRIMARY KEY,
 	Kreditart VARCHAR(50),
+	gueltig_ab TIMESTAMP,
+	gueltig_bis TIMESTAMP
+);
+
+CREATE TABLE Beruf (
+	BerufID SERIAL PRIMARY KEY,
+	Berufname VARCHAR(50),
+	gueltig_ab TIMESTAMP,
+	gueltig_bis TIMESTAMP
+);
+
+CREATE TABLE Adresse (
+	AdressID SERIAL PRIMARY KEY,
+	Hausnummer INT,
+	Straße VARCHAR (50),
+	Stadt VARCHAR (50),
+	PLZ INT,
+	Land VARCHAR (50),
+	gueltig_ab TIMESTAMP,
+	gueltig_bis TIMESTAMP
+);
+
+CREATE TABLE Partnerart (
+	PartnerartID SERIAL PRIMARY KEY,
+	Partnerart VARCHAR(50),
+	gueltig_ab TIMESTAMP,
+	gueltig_bis TIMESTAMP
+);
+
+CREATE TABLE Kundentyp (
+	KundentypID SERIAL PRIMARY KEY,
+	gueltig_ab TIMESTAMP NOT NULL,
+	gueltig_bis TIMESTAMP NOT NULL
+);
+
+CREATE TABLE Buergen (
+	BuergenID SERIAL PRIMARY KEY,
+	AdressID INT NOT NULL REFERENCES Adresse(AdressID),
+	Vorname VARCHAR NOT NULL,
+	Nachname VARCHAR NOT NULL,
+	gueltig_ab TIMESTAMP NOT NULL,
+	gueltig_bis TIMESTAMP NOT NULL
+);
+
+CREATE TABLE Provisionsvertrag (
+	ProvisionsvertragID SERIAL PRIMARY KEY,
+	hoehe FLOAT NOT NULL,
+	gueltig_ab TIMESTAMP NOT NULL,
+	gueltig_bis TIMESTAMP NOT NULL
+);
+
+CREATE TABLE Mitarbeiter (
+	MitarbeiterID SERIAL PRIMARY KEY,
+	Vorname VARCHAR NOT NULL,
+	Nachname VARCHAR NOT NULL,
+	Geburtstag DATE,
+	Gehalt float,
+	AdressID INT NOT NULL REFERENCES Adresse(AdressID),
+	BerufID INT NOT NULL REFERENCES Beruf(BerufID),
 	gueltig_ab TIMESTAMP,
 	gueltig_bis TIMESTAMP
 );
@@ -33,43 +80,20 @@ CREATE TABLE Kunde (
 	gueltig_bis TIMESTAMP
 );
 
-CREATE TABLE Beruf (
-	BerufID SERIAL PRIMARY KEY,
-	Berufname VARCHAR(50),
+CREATE TABLE Kredit (
+	KreditID SERIAL PRIMARY KEY, 
+	Zinsen float,
+	Kreditvolumen float,
+	Abschlusskosten float,
+	Geforderte_garantie float,
+	Personalkosten float,
+	Anfangstermin DATE,
+	Endtermin DATE,
+	KundenID INT NOT NULL REFERENCES Kunde(KundenID),
+	KreditartID INT NOT NULL REFERENCES Kreditart(KreditartID),
 	gueltig_ab TIMESTAMP,
 	gueltig_bis TIMESTAMP
 );
-
-CREATE TABLE Mitarbeiter (
-	MitarbeiterID SERIAL PRIMARY KEY,
-	Vorname VARCHAR NOT NULL,
-	Nachname VARCHAR NOT NULL,
-	Geburtstag DATE,
-	Gehalt float,
-	AdressID INT NOT NULL REFERENCES Adresse(AdressID),
-	BerufID INT NOT NULL REFERENCES Beruf(BerufID),
-	gueltig_ab TIMESTAMP,
-	gueltig_bis TIMESTAMP
-);
-
-CREATE TABLE Adresse (
-	AdressID SERIAL PRIMARY KEY,
-	Hausnummer INT,
-	Straße VARCHAR (50),
-	Stadt VARCHAR (50),
-	PLZ INT,
-	Land VARCHAR (50),
-	gueltig_ab TIMESTAMP,
-	gueltig_bis TIMESTAMP
-);
-
-CREATE TABLE Partnerart (
-	PartnerartenID SERIAL PRIMARY KEY,
-	Partnerart VARCHAR(50),
-	gueltig_ab TIMESTAMP,
-	gueltig_bis TIMESTAMP
-);
-
 
 CREATE TABLE Vertriebspartner (
 	VertriebspartnerID SERIAL PRIMARY KEY,
@@ -102,28 +126,6 @@ CREATE TABLE Buergschaft (
 	BuergschaftsID SERIAL NOT NULL PRIMARY KEY,
 	KundenID INT NOT NULL REFERENCES Kunde(KundenID),
 	BuergenID INT NOT NULL REFERENCES Buergen(BuergenID),
-	gueltig_ab TIMESTAMP NOT NULL,
-	gueltig_bis TIMESTAMP NOT NULL
-);
-
-CREATE TABLE Kundentyp (
-	KundentypID SERIAL PRIMARY KEY,
-	gueltig_ab TIMESTAMP NOT NULL,
-	gueltig_bis TIMESTAMP NOT NULL
-);
-
-CREATE TABLE Buergen (
-	BuergenID SERIAL PRIMARY KEY,
-	AdressID INT NOT NULL REFERENCES Adresse(AdressID),
-	Vorname VARCHAR NOT NULL,
-	Nachname VARCHAR NOT NULL,
-	gueltig_ab TIMESTAMP NOT NULL,
-	gueltig_bis TIMESTAMP NOT NULL
-);
-
-CREATE TABLE Provisionsvertrag (
-	ProvionsvertragID SERIAL PRIMARY KEY,
-	hoehe FLOAT NOT NULL,
 	gueltig_ab TIMESTAMP NOT NULL,
 	gueltig_bis TIMESTAMP NOT NULL
 );
