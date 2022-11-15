@@ -14,6 +14,23 @@ ON v.provisionsvertragid = p.provisionsvertragid
 
 
 
+-- Dimensions Tabellen
+CREATE VIEW star_ort AS 
+	SELECT adressid, stadt, land FROM adresse
+
+CREATE VIEW star_partner AS
+	SELECT v.vertriebspartnerid, v.firmenname, v.partnerartid, p.partnerart
+	FROM vertriebspartner v
+	LEFT JOIN partnerart p ON v.partnerartid = p.partnerartid
+
+CREATE VIEW star_kunde AS
+	SELECT kundenid, kt.kundentypid, kt.kundentyp
+	FROM kunde k
+	LEFT JOIN kundentyp kt ON k.kundentypid = kt.kundentypid
+
+
+
+
 CREATE VIEW kredit_provision AS
   SELECT k.kreditid, pv.hoehe as Provisionshoehe
   FROM kredit k
