@@ -1,14 +1,17 @@
-SELECT SUM(k.kreditvolumen) AS Kreditvolumen, SUM(r.tilgungsanteil) + SUM(r.zinsanteil) AS Umsatz, SUM(p.hoehe)
-FROM kredit k
-LEFT JOIN rueckzahlung r
+SELECT k.kreditid, k.kreditvolumen AS Kreditvolumen, kp.provisionshoehe,
+(SELECT SUM(zinsanteil) FROM rueckzahlung WHERE kreditid = k.kreditid) 
++ (SELECT SUM(tilgungsanteil) FROM rueckzahlung WHERE kreditid = k.kreditid) AS Umsatz
+FROM public.kredit_provision kp, kredit k
+JOIN rueckzahlung r
 ON r.kreditid = k.kreditid
-LEFT JOIN kreditverantwortlicher kv
+JOIN kreditverantwortlicher kv
 ON kv.kreditid = k.kreditid
-LEFT JOIN vertriebspartner v
+JOIN vertriebspartner v
 ON kv.vertriebspartnerid = v.vertriebspartnerid
-LEFT JOIN provisionsvertrag p
+JOIN provisionsvertrag p
 ON v.provisionsvertragid = p.provisionsvertragid
-
+WHERE k.kreditid = kp.kreditid
+GROUP BY k.kreditid, kp.provisionshoehe
 
 
 
