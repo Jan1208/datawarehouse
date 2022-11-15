@@ -35,6 +35,7 @@ CREATE TABLE Partnerart (
 
 CREATE TABLE Kundentyp (
 	KundentypID SERIAL PRIMARY KEY,
+	kundentyp varchar NOT NULL;
 	gueltig_ab TIMESTAMP NOT NULL,
 	gueltig_bis TIMESTAMP NOT NULL
 );
