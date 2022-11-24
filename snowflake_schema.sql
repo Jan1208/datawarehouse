@@ -13,7 +13,7 @@ CREATE VIEW snow_kundentyp AS
 	SELECT kundentypid, kundentyp FROM kundentyp;
   
 CREATE VIEW snow_plz AS
-	SELECT plzid, plz, regionname landid FROM plz
+	SELECT plzid, plz, regionname landid FROM plz;
  
  CREATE VIEW snow_land AS 
-	SELECT landid, land FROM land
+	SELECT landid, land FROM land;
