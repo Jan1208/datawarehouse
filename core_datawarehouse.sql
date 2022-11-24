@@ -19,9 +19,7 @@ CREATE TABLE Adresse (
 	AdressID SERIAL PRIMARY KEY,
 	Hausnummer INT,
 	Straße VARCHAR (50),
-	Stadt VARCHAR (50),
-	PLZ INT,
-	Land VARCHAR (50),
+	PlzID INT REFERENCES PLZ(plzID),
 	gueltig_ab TIMESTAMP,
 	gueltig_bis TIMESTAMP
 );
@@ -128,4 +126,16 @@ CREATE TABLE Buergschaft (
 	BuergenID INT NOT NULL REFERENCES Buergen(BuergenID),
 	gueltig_ab TIMESTAMP NOT NULL,
 	gueltig_bis TIMESTAMP NOT NULL
+);
+
+CREATE TABLE LAND (
+	landID SERIAL NOT NULL PRIMARY KEY,
+	land VARCHAR NOT NULL
+);
+
+CREATE TABLE PLZ (
+	plzID SERIAL NOT NULL PRIMARY KEY,
+	plz VARCHAR NOT NULL,
+	regionname VARCHAR NOT NULL,
+	landid INT NOT NULL REFERENCES Land(LandID)
 );
