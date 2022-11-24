@@ -17,8 +17,12 @@ GROUP BY k.kreditid, kp.provisionshoehe, ku.kundenid, ad.adressid, v.vertriebspa
 
 
 -- Dimensions Tabellen
-CREATE VIEW star_ort AS 
-	SELECT adressid, stadt, land FROM adresse
+CREATE VIEW star_ort AS
+	SELECT 
+	adressid, a.plzid, p.plz, p.regionname,l.landid, l.land
+	FROM adresse a
+	JOIN plz p ON a.plzid = p.plzid
+	JOIN land l ON l.landid = p.landid
 
 CREATE VIEW star_partner AS
 	SELECT v.vertriebspartnerid, v.firmenname, v.partnerartid, p.partnerart
