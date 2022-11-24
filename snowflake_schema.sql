@@ -1,5 +1,5 @@
 
-// DIMENSIONS-TABELLEN
+-- DIMENSIONS-TABELLEN
 CREATE VIEW snow_vertriebspartner AS
 	SELECT vertriebspartnerid, partnerartid FROM vertriebspartner;
   
