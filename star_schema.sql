@@ -1,3 +1,4 @@
+CREATE VIEW star_faktentabelle
 SELECT k.kreditid, k.kreditvolumen AS Kreditvolumen, kp.provisionshoehe,
 (SELECT SUM(zinsanteil) FROM rueckzahlung WHERE kreditid = k.kreditid) 
 + (SELECT SUM(tilgungsanteil) FROM rueckzahlung WHERE kreditid = k.kreditid) AS Umsatz, ku.kundenid, ad.adressid, v.vertriebspartnerid
